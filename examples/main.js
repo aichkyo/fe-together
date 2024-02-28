@@ -1,4 +1,8 @@
-import Vue from 'vue'
+const Vue = window.Vue
+window.ks = window.ks && window.ks.default
+window.ksui = window.ksui && window.ksui.default
+
+// import Vue from 'vue'
 import App from './App.vue'
 
 import hrUI from '../packages/index'

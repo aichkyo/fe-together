@@ -5,10 +5,14 @@
  */
 // 引入组件
 import hrButton from "./hr-button";
+import hrModuleCard from "./hr-module-card";
+import hrViewItem from "./hr-view-item";
 
 // 存储组件列表
 const components = [
   hrButton,
+  hrModuleCard,
+  hrViewItem
 ];
 
 // 定义install方法，接受vue作为参数
@@ -31,4 +35,6 @@ if (typeof window !== "undefined" && window.Vue) {
 export default {
   install,
   hrButton,
+  hrModuleCard,
+  hrViewItem
 };

@@ -5,10 +5,12 @@
 -->
 <template>
   <div class="hr-button">
-    <button class="button"
-            @click="handleBtnClick">
+
+    <ks-button plain
+               type="primary"
+               @click="handleBtnClick">
       <slot></slot>
-    </button>
+    </ks-button>
   </div>
 </template>
 

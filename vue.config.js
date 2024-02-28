@@ -12,21 +12,17 @@ module.exports = defineConfig({
       entry: 'examples/main.js',
       template: 'public/index.html',
       filename: 'index.html'
-    }
+    },
   },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].js'
-  },
-  devServer: {
-
-  },
+  outputDir: 'dist',
+  publicPath: '/',
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('examples'))
       .set('assets', resolve('examples/assets'))
       .set('components', resolve('examples/components'))
   },
-
+  css: {
+    extract: false, // 组件中的 CSS 动态注入到 JavaScript 中的 inline 代码
+  }
 })
