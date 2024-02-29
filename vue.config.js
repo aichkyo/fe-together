@@ -19,6 +19,7 @@ module.exports = defineConfig({
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('examples'))
+      .set('packages', resolve('packages'))
       .set('assets', resolve('examples/assets'))
       .set('components', resolve('examples/components'))
   },

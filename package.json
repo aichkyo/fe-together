@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "vue": "^2.6.14"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -22,7 +22,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.10"
   },
   "main": "./dist/hrui.common.js",
   "description": "hroa-ui",
