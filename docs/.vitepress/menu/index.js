@@ -5,16 +5,11 @@
  */
 
 import {
-  nav
-} from './nav'
-
-import {
   H5Views,
   H5Custom
 } from './sidebar'
 
 export {
-  nav,
   H5Views,
   H5Custom
 }
