@@ -8,7 +8,10 @@
     "lint": "vue-cli-service lint",
     "lib": "vue-cli-service build --target lib --name hrui ./packages/index.js",
     "build:lib": "build-lib.sh",
-    "build:docs": "./build-docs.sh"
+    "build:docs": "./build-docs.sh",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -24,6 +27,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
+    "vitepress": "^1.0.0-rc.45",
     "vue-template-compiler": "^2.6.10"
   },
   "main": "./dist/hrui.common.js",
