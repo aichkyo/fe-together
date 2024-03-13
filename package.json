@@ -1,12 +1,14 @@
 {
-  "name": "hroa-ui",
-  "version": "0.1.5",
+  "name": "hrui",
+  "version": "0.1.6",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name hrui ./packages/index.js"
+    "lib": "vue-cli-service build --target lib --name hrui ./packages/index.js",
+    "build:lib": "build-lib.sh",
+    "build:docs": "./build-docs.sh"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -49,6 +51,7 @@
     },
     "rules": {}
   },
+  "license": "MIT",
   "browserslist": [
     "> 1%",
     "last 2 versions",
