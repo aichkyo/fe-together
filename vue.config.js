@@ -1,11 +1,11 @@
-const { defineConfig } = require('@vue/cli-service')
+// const { defineConfig } = require('@vue/cli-service')
 // import vue from '@vitejs/plugin-vue'
 const path = require('path')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
-module.exports = defineConfig({
-  transpileDependencies: true,
+module.exports = {
+  // transpileDependencies: true,
 
   pages: {
     index: {
@@ -26,4 +26,4 @@ module.exports = defineConfig({
   css: {
     extract: false, // 组件中的 CSS 动态注入到 JavaScript 中的 inline 代码
   }
-})
+}

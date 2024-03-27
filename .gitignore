@@ -11,7 +11,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-yarn.lock
+yarn.lock*
 
 # Editor directories and files
 .idea
@@ -25,3 +25,6 @@ yarn.lock
 # vitePress
 # docs/.vitepress/dist  # 文档库打包的文件是否需要同步到仓库
 docs/.vitepress/cache
+
+# vuepress
+docs/.vuepress/cache
