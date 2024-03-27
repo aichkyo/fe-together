@@ -1,18 +1,17 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
-layout: home
 
-hero:
-  name: "HR FE Together Build"
-  text: "前端共建文档库"
-  tagline: 来自HR-OA-KTS部门的前端er们
-  actions:
-    - theme: brand
-      text: 开始了解
-      link: /H5-components/
-    - theme: alt
-      text: 我们的主页
-      link: /ERP-components/
+# https://vitepress.dev/reference/default-theme-home-page
+# layout: home
+
+home: true
+
+heroText: HR前端共建文档库
+
+tagline: HR FE Together Build
+
+actionText: 快速上手 →
+
+actionLink: /H5-components/
 
 features:
   - title: 轻应用组件库
@@ -21,5 +20,5 @@ features:
     details: 铸剑公共组件库在构建 ERP 系统过程中广泛使用，有助于提高代码质量和系统稳定性
   - title: 公共工具及方法
     details: 在开发过程中经常使用的一些工具、方法和技巧，这些工具和方法可以提高代码的可维护性和统一性
----
 
+---
