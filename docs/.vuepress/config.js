@@ -5,6 +5,11 @@ const path = require('path');
 
 // https://vuepress.vuejs.org/zh/guide/directory-structure.html
 module.exports = {
+  // 打包配置
+  dest: './dist/',
+  // base: '/',
+
+  // 文档配置
   title: "HR FE Together Build",
   description: "HR-OA-KTS部门前端共建文档库",
   themeConfig: {
