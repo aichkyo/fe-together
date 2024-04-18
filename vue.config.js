@@ -15,7 +15,7 @@ module.exports = {
     },
   },
   outputDir: 'dist',
-  publicPath: '/',
+  publicPath: './',
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('examples'))

@@ -7,7 +7,7 @@ const path = require('path');
 module.exports = {
   // 打包配置
   dest: './dist/',
-  // base: '/',
+  base: '/',
 
   // 文档配置
   title: "HR FE Together Build",
