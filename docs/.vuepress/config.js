@@ -15,7 +15,7 @@ module.exports = {
   themeConfig: {
     // https://vuepress.vuejs.org/zh/theme/default-theme-config.html
     nav: [
-      { text: 'Home', link: '/' },
+      { text: '指南', link: '/guide/', activeMatch: '/guide/' },
       { text: '轻应用', link: '/H5-components/', activeMatch: '/H5-components/' },
       { text: '铸剑', link: '/ERP-components/', activeMatch: '/ERP-components/' },
       { text: '工具方法', link: '/utils/' },
@@ -24,7 +24,14 @@ module.exports = {
 
     // sidebar: 'auto',
     sidebar: {
-
+      '/guide/': [
+        {
+          title: '指南',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: getSideBar('guide', '')
+        }
+      ],
       '/H5-components/': [
         {
           title: '业务组件',

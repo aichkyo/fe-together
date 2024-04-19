@@ -30,7 +30,6 @@
     "vuepress": "^1.9.10",
     "vuepress-plugin-smooth-scroll": "^0.0.10"
   },
-  "main": "./dist/hrui.common.js",
   "description": "hroa-ui",
   "files": [
     "dist",
