@@ -28,8 +28,7 @@ module.exports = {
         {
           title: '指南',
           collapsable: false,
-          sidebarDepth: 2,
-          children: getSideBar('guide', '')
+          sidebarDepth: 1,
         }
       ],
       '/H5-components/': [

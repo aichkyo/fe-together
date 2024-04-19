@@ -11,7 +11,7 @@ tagline: HR FE Together Build
 
 actionText: 快速上手 →
 
-actionLink: /H5-components/
+actionLink: /guide/
 
 features:
   - title: 轻应用组件库
