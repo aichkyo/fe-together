@@ -2,7 +2,6 @@
   <div class="mobile-simulator">
     <div class="mobile-screen">
       <h1>{{ msg }}</h1>
-      <hr-button>hrButton</hr-button>
       <hr-module-card title="hrModuleCardTitle"
                       edit>
         <template slot="title"> 模块卡片组件 </template>
@@ -11,6 +10,16 @@
           hrModuleCard内容
         </div>
       </hr-module-card>
+      <hr-notice-bar class="notice-class"
+                     mode="closeable"
+                     :isOverflowShow="false"
+                     @close="closeNotice"
+                     text="已为你精选出重要留言请及时查看!"
+                     left-icon="volume" />
+      <div :style="{height: '350px'}">
+        <HrEmotionalPicture />
+      </div>
+      <HrBottomButton :list="list" />
     </div>
 
   </div>
@@ -18,16 +27,44 @@
 
 <script>
 
-  import hrButton from 'packages/hr-button/index.js';
   import hrModuleCard from 'packages/hr-module-card/index.js';
+  import hrNoticeBar from 'packages/hr-notice-bar/index'
+  import HrEmotionalPicture from 'packages/hr-emotional-picture'
+  import HrBottomButton from 'packages/hr-bottom-button'
+
   export default {
     name: 'HelloWorld',
     components: {
-      hrButton,
-      hrModuleCard
+      hrModuleCard,
+      hrNoticeBar,
+      HrEmotionalPicture,
+      HrBottomButton
     },
     props: {
       msg: String
+    },
+    data () {
+      return {
+        list: [
+          {
+            text: '删除',
+            icon: '',
+          },
+          {
+            text: '取消',
+            icon: '',
+          },
+          {
+            text: '确定',
+            icon: '',
+          }
+        ]
+      }
+    },
+    methods: {
+      closeNotice () {
+        console.log('closeNotice')
+      }
     }
   }
 </script>
@@ -62,7 +99,7 @@
   .mobile-screen {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-y: scroll;
     border-radius: 10px;
   }
 </style>
