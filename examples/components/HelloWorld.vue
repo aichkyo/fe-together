@@ -19,7 +19,9 @@
       <div :style="{height: '350px'}">
         <HrEmotionalPicture />
       </div>
-      <HrBottomButton :list="list" />
+      <HrBottomButton :list="list"
+                      @clickButton='clickButton' />
+      <HrConditionFiltrate v-model="isShowFiltrate" />
     </div>
 
   </div>
@@ -31,6 +33,7 @@
   import hrNoticeBar from 'packages/hr-notice-bar/index'
   import HrEmotionalPicture from 'packages/hr-emotional-picture'
   import HrBottomButton from 'packages/hr-bottom-button'
+  import HrConditionFiltrate from 'packages/hr-condition-filtrate'
 
   export default {
     name: 'HelloWorld',
@@ -38,7 +41,8 @@
       hrModuleCard,
       hrNoticeBar,
       HrEmotionalPicture,
-      HrBottomButton
+      HrBottomButton,
+      HrConditionFiltrate
     },
     props: {
       msg: String
@@ -58,12 +62,18 @@
             text: '确定',
             icon: '',
           }
-        ]
+        ],
+        isShowFiltrate: false
       }
     },
     methods: {
       closeNotice () {
         console.log('closeNotice')
+      },
+      clickButton (index) {
+        if (index === 0) {
+          this.isShowFiltrate = true
+        }
       }
     }
   }
