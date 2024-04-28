@@ -71,9 +71,11 @@
         console.log('closeNotice')
       },
       clickButton (index) {
+        console.log(index)
         if (index === 0) {
           this.isShowFiltrate = true
         }
+        console.log(this.isShowFiltrate)
       }
     }
   }
