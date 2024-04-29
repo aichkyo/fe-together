@@ -1,6 +1,13 @@
 <script>
+  import SingleChoose from './single-choose/index.vue'
+  import MultitermChoose from './multiterm-choose/index.vue'
+
   export default {
     name: 'HrConditionFiltrate',
+    components: {
+      SingleChoose,
+      MultitermChoose
+    },
     props: {
       value: {
         type: Boolean,
@@ -30,12 +37,8 @@
             </div>
           </header>
           <div class="content-main ksui-body">
-            <div class="main-item">
-              <div class="item-title">申请时间</div>
-            </div>
-            <div class="main-item">
-              <div class="item-title">培训类型<span class="title-black">（多选）</span></div>
-            </div>
+            <SingleChoose title="培训类型" />
+            <MultitermChoose title="排序" />
             <div class="main-item">
               <div class="item-title">排序</div>
             </div>
@@ -66,6 +69,42 @@
     height: 100%;
     border-radius: 12px 0px 0px 12px;
     box-sizing: border-box;
+    .ksui-nav {
+      .van-nav-bar {
+        display: flex;
+        padding: 0 16px;
+        flex-direction: row;
+        align-items: center;
+        .van-icon.van-icon-arrow-left.van-nav-bar__arrow {
+          font-size: 22px !important;
+          font-weight: 500;
+          color: #000;
+        }
+        .van-nav-bar__left,
+        .van-nav-bar__right {
+          position: static;
+          font-size: 22px;
+          font-weight: 500;
+          color: #000;
+        }
+        .van-nav-bar__left {
+          display: flex;
+          justify-content: flex-start;
+          flex: 0 0 22px;
+          margin-right: 4px;
+        }
+        .van-nav-bar__title {
+          margin: 0;
+          flex: 0 0 auto;
+          height: auto;
+          line-height: auto;
+
+          // & > a.light {
+          //   border: 1px solid #7972fe;
+          // }
+        }
+      }
+    }
     .ksui-header {
       background: #fff !important;
     }
@@ -73,6 +112,7 @@
       padding: 16px;
       overflow-y: scroll !important;
       padding-bottom: 90px;
+      height: 100%;
       .main-item {
         margin-bottom: 8px;
         .item-title {
@@ -81,6 +121,7 @@
           font-size: 14px;
           font-weight: 600;
           color: #03050d;
+          text-align: left;
           .title-black {
             font-size: 14px;
             font-weight: normal;
@@ -175,5 +216,9 @@
   }
   .van-popup {
     height: 100%;
+  }
+  .ios .content-footer,
+  .ipx .content-footer {
+    padding-top: 28px;
   }
 </style>
