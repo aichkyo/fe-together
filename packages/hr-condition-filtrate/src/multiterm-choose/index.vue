@@ -84,7 +84,8 @@
             this.$set(this.listActive, 0, false)
           }
         }
-        this.$emit('select', this.listActive)
+        const chooseList = this.concatList.filter((item, index) => this.listActive[index])
+        this.$emit('select', chooseList)
       }
     },
     render () {

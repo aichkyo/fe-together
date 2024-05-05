@@ -1,6 +1,7 @@
 <script>
   import SingleChoose from './single-choose/index.vue'
   import MultitermChoose from './multiterm-choose/index.vue'
+  import TimeSelector from './time-selector/index.vue'
 
   export default {
     name: 'HrConditionFiltrate',
@@ -26,6 +27,13 @@
       }
     },
     render () {
+      // 单项选择卡片
+      const renderSingleChoose = (title) => <SingleChoose title={title} />
+      // 多项选择卡片 
+      const renderMultitermChoose = (title) => <MultitermChoose title={title} />
+
+      const renderTimeSelector = () => <TimeSelector ref='TimeSelector' />
+
       const renderFiltrateContent = () => {
         return <div class="filtrate-content">
           <header class="ksui-header">
@@ -37,8 +45,9 @@
             </div>
           </header>
           <div class="content-main ksui-body">
-            <SingleChoose title="培训类型" />
-            <MultitermChoose title="排序" />
+            {renderSingleChoose('培训类')}
+            {renderMultitermChoose('排序')}
+            {renderTimeSelector()}
             <div class="main-item">
               <div class="item-title">排序</div>
             </div>
