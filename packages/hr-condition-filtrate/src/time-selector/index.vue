@@ -1,6 +1,8 @@
 <script>
   import DateRangeSelect from './date-range-select.vue'
-  import { hrDayJs } from './tools'
+  import { hrDayJs } from './utils/tools'
+
+
   export default {
     name: 'TimeSelector',
     components: {
@@ -70,12 +72,13 @@
         switch (val) {
           case '1':
             // 近三天
-            this.startDate = hrDayJs().subtract(3, 'date').format('YYYY/MM/DD')
+            this.startDate = hrDayJs().subtract(3, 'day').format('YYYY/MM/DD')
             this.endDate = hrDayJs().format('YYYY/MM/DD')
+            console.log(this.startDate, this.endDate, 'endDate')
             break
           case '2':
             // 近七天
-            this.startDate = hrDayJs().subtract(7, 'date').format('YYYY/MM/DD')
+            this.startDate = hrDayJs().subtract(7, 'day').format('YYYY/MM/DD')
             this.endDate = hrDayJs().format('YYYY/MM/DD')
             break
           case '3':
@@ -158,20 +161,24 @@
       }
     },
     render () {
-      return <div class="apply-date-selector">
+      const renderRangeInputBox = () => {
+        return <div class="value">
+          <span>{this.startDate}</span>
+          <span class="mid-key"> - </span>
+          <span>{this.endDate}</span>
+        </div>
+      }
+
+      const renderInputBox = () => {
+        return <div class="value">
+          <span>{this.defaultDate}</span>
+        </div>
+      }
+
+      return <div class="time-selector">
         <div class="value-box" onClick={this.showPop}>
-          {
-            this.type == 'daterange' && <div class="value">
-              <span>{this.startDate}</span>
-              <span class="mid-key"> - </span>
-              <span>{this.endDate}</span>
-            </div>
-          }
-          {
-            this.type == 'date' && <div class="value">
-              <span>{this.defaultDate}</span>
-            </div>
-          }
+          {this.type == 'daterange' && renderRangeInputBox()}
+          {this.type == 'date' && renderInputBox()}
           <span class="icon"></span>
         </div>
         {
@@ -210,7 +217,7 @@
             </div>
             <div class="time-footer-btn">
               <van-button type="default" onClick={this.reset} class="btn left-btn">重置</van-button>
-              <van-button type="primary" onClick="submit" class="btn">确定</van-button>
+              <van-button type="primary" onClick={this.submit} class="btn">确定</van-button>
             </div>
           </div >
         </van-popup>
@@ -234,7 +241,7 @@
       }
     }
   }
-  .apply-date-selector {
+  .time-selector {
     width: 100%;
     text-align: center;
     line-height: 38px;

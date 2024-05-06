@@ -1,5 +1,5 @@
 <script>
-  import { formatToDate, formatToString } from './tools'
+  import { formatToDate, formatToString } from './utils/tools'
   // import { hrDayJs } from './tools'
 
   export default {
@@ -54,10 +54,12 @@
       disposeVantBug () {
         this.$nextTick(() => {
           const select = document.querySelector('.van-calendar__body')
+          console.log(select, 'select')
           select.scrollTop += 1
         })
       },
       handleSelect (e) {
+        console.log(e, 'swq')
         this.$emit('select', { date: e, str: [formatToString(e[0]), formatToString(e[1])] })
       }
     },
