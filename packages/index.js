@@ -10,6 +10,7 @@ import hrViewItem from "./hr-view-item";
 import hrStackImage from './hr-stack-image/index.vue'
 import HrOpenKS from './hr-open-ks/index'
 import HrClipboard from './hr-clipboard/index'
+import HrSelect from './hr-select/index'
 
 // 存储组件列表
 const components = [
@@ -18,7 +19,8 @@ const components = [
   hrViewItem,
   hrStackImage,
   HrOpenKS,
-  HrClipboard
+  HrClipboard,
+  HrSelect
 ];
 
 // 定义install方法，接受vue作为参数
