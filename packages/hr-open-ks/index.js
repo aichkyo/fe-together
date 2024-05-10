@@ -1,3 +1,3 @@
-import OpenKS from './src/main'
+import HrOpenKS from './src/main'
 
-export default OpenKS
+export default HrOpenKS
