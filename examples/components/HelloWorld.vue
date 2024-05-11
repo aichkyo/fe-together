@@ -11,6 +11,10 @@
           hrModuleCard内容
         </div>
       </hr-module-card>
+      <hr-stack-image :list="imageList"
+                      size="30px"
+                      @click="handImageClick">
+      </hr-stack-image>
     </div>
 
   </div>
@@ -20,14 +24,31 @@
 
   import hrButton from 'packages/hr-button/index.js';
   import hrModuleCard from 'packages/hr-module-card/index.js';
+  import hrStackImage from 'packages/hr-stack-image'
   export default {
     name: 'HelloWorld',
     components: {
       hrButton,
-      hrModuleCard
+      hrModuleCard,
+      hrStackImage
     },
     props: {
       msg: String
+    },
+    data () {
+      return {
+        imageList: [
+          "https://nos.netease.com/nim/MTAzMTgzOA==/bmltd18wXzE0NjI2MTE2Mjk5OTNfMzBlMjZmM2EtYzViMS00MzgzLTk4MmItMmEzNDMxOTZkZWIz",
+          "https://kuasheng-res-uat.kyslb.com/app/avatar/uat/person/faa05fa33d576326ace9f8625583271f_112536_14369514354721956405.jpg",
+          "https://kuasheng-res-uat.kyslb.com/app/avatar/uat/person/e032d75541a7b82c5f9a16573681e872_494230_6191304898900678859.jpg",
+          "https://kuasheng-res-uat.kyslb.com/app/avatar/uat/person/49cd018c0380a81de9515e7aebc211cf_2447325_18069676875039978711.jpg"
+        ]
+      }
+    },
+    methods: {
+      handImageClick (index) {
+        console.log(index)
+      }
     }
   }
 </script>

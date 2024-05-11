@@ -82,6 +82,7 @@ function getSideBar (catalog, folder) {
       sidebar.push(folder + '/' + sidebarName)
     }
   }
+  console.log(sidebar)
   return sidebar;
 }
 

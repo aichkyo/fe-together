@@ -7,12 +7,20 @@
 import hrButton from "./hr-button";
 import hrModuleCard from "./hr-module-card";
 import hrViewItem from "./hr-view-item";
+import hrStackImage from './hr-stack-image'
+import HrOpenKS from './hr-open-ks/index'
+import HrClipboard from './hr-clipboard/index'
+import HrSelect from './hr-select/index'
 
 // 存储组件列表
 const components = [
   hrButton,
   hrModuleCard,
-  hrViewItem
+  hrViewItem,
+  hrStackImage,
+  HrOpenKS,
+  HrClipboard,
+  HrSelect
 ];
 
 // 定义install方法，接受vue作为参数
