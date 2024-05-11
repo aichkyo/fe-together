@@ -24,7 +24,7 @@
 
   import hrButton from 'packages/hr-button/index.js';
   import hrModuleCard from 'packages/hr-module-card/index.js';
-  import hrStackImage from 'packages/hr-stack-image/index.vue'
+  import hrStackImage from 'packages/hr-stack-image'
   export default {
     name: 'HelloWorld',
     components: {
