@@ -1,6 +1,7 @@
 <script>
   import DateRangeSelect from './date-range-select.vue'
   import { hrDayJs } from './utils/tools'
+  import { DATE_SHORTCUT_PARAMS } from '../enum/index.js'
 
 
   export default {
@@ -21,7 +22,7 @@
         type: String,
         default: '2020/01/01'
       },
-      isTab: {
+      isTab: { // 是否显示快捷按钮
         type: Boolean,
         default: true
       },
@@ -33,6 +34,12 @@
         type: String,
         default: 'month'
       },
+      title: {
+        type: String,
+        default () {
+          return '请选择'
+        }
+      },
     },
     data () {
       return {
@@ -40,20 +47,6 @@
         endDate: '',
         show: false,
         defaultDate: [],
-        timeBtnList: [
-          {
-            name: '近一个月',
-            value: '3'
-          },
-          {
-            name: '近三天',
-            value: '1'
-          },
-          {
-            name: '近七天',
-            value: '2'
-          },
-        ],
         active: '',
         maxDate: hrDayJs(new Date())
           .subtract(-1, 'month')
@@ -66,38 +59,20 @@
       this.initDate();
     },
     methods: {
-      handleChoose (val) {
-        console.log(val, 'val')
-        this.active = val
-        switch (val) {
-          case '1':
-            // 近三天
-            this.startDate = hrDayJs().subtract(3, 'day').format('YYYY/MM/DD')
-            this.endDate = hrDayJs().format('YYYY/MM/DD')
-            console.log(this.startDate, this.endDate, 'endDate')
-            break
-          case '2':
-            // 近七天
-            this.startDate = hrDayJs().subtract(7, 'day').format('YYYY/MM/DD')
-            this.endDate = hrDayJs().format('YYYY/MM/DD')
-            break
-          case '3':
-            // 近一个月
-            this.startDate = hrDayJs().subtract(1, 'month').format('YYYY/MM/DD')
-            this.endDate = hrDayJs().format('YYYY/MM/DD')
-            break
-        }
+      handleChoose (active) {
+        const param = DATE_SHORTCUT_PARAMS[active]
+        const { count, type } = param
+        this.startDate = hrDayJs().subtract(count, type).format('YYYY/MM/DD')
+        this.endDate = hrDayJs().format('YYYY/MM/DD')
+        this.active = active
         this.defaultDate = [this.startDate + ' 00:00:00', this.endDate + ' 23:59:59']
-        // this.comItem.value = this.defaultDate.map((time) => time.replace(/\//g, '-'))
         this.$emit('input', this.defaultDate)
       },
       initDate () {
-        let startDate = hrDayJs(new Date()).subtract(this.defaultValue, this.defaultType).format('YYYY/MM');
-        let endDate = hrDayJs(new Date()).format('YYYY/MM/DD');
+        let startDate = hrDayJs(new Date()).subtract(this.defaultValue, this.defaultType).format('YYYY/MM')
+        let endDate = hrDayJs(new Date()).format('YYYY/MM/DD')
         this.defaultDate = [startDate + '/01 00:00:00', endDate + ' 23:59:59']
-        this.selectValue = {
-          str: [startDate, endDate]
-        }
+        this.selectValue = { str: [startDate, endDate] }
         this.startDate = null
         this.endDate = null
         this.active = ''
@@ -135,6 +110,7 @@
         this.selectValue = value
       },
       submit () {
+        console.log('submit')
         let value = this.selectValue
         if (value.str && value.str.length && value.str[1]) {
           let res = this.timeDifference(value.str[0] + ' 00:00:00', value.str[1] + ' 00:00:00')
@@ -161,66 +137,77 @@
       }
     },
     render () {
+      {/* 渲染时间范围选择框 */ }
       const renderRangeInputBox = () => {
-        return <div class="value">
+        return <div class="input-box">
           <span>{this.startDate}</span>
           <span class="mid-key"> - </span>
           <span>{this.endDate}</span>
         </div>
       }
 
+      {/* 渲染单个时间选择框 */ }
       const renderInputBox = () => {
-        return <div class="value">
+        return <div class="input-box">
           <span>{this.defaultDate}</span>
         </div>
       }
 
+      {/* 快捷选项 */ }
+      const renderSelectorShortcutBox = () => {
+        return <div class="selector-shortcut">
+          {
+            Object.keys(DATE_SHORTCUT_PARAMS).map((key) => {
+              return <div class={["shortcut-item", key == this.active ? 'active' : '']}
+                onClick={this.handleChoose.bind(this, key)}
+                key={key}>{DATE_SHORTCUT_PARAMS[key].text}</div>
+            })
+          }
+        </div>
+      }
+
       return <div class="time-selector">
-        <div class="value-box" onClick={this.showPop}>
+        {/* 头部 */}
+        <div class="selector-title">{this.title}</div>
+        {/* 选择框 */}
+        <div class="selector-input" onClick={this.showPop}>
           {this.type == 'daterange' && renderRangeInputBox()}
           {this.type == 'date' && renderInputBox()}
-          <span class="icon"></span>
+          <span class="input-icon"></span>
         </div>
-        {
-          this.isTab && <div class="time-btn-box">
-            {
-              this.timeBtnList.map((item, index) => {
-                return <div class={["time-btn-item", item.value == this.active ? 'active' : '']}
-                  onClick={this.handleChoose.bind(this, item.value)}
-                  key={index}>{item.name}</div>
-              })
-            }
-          </div>
-        }
-        <van-popup
-          value={this.show}
-          onInput={(value) => { this.show = value }}
-          class="filter-data-pop"
-          style="height: 100%"
-          get-container="body"
-          position="right">
-          <div class="time-pop-box">
-            <header class="ksui-header">
-              <div class="back-icon" onClick={() => { this.show = false }}>
-                <van-icon size={15} name="arrow-left" />
-                <span>选择时间段</span>
+        {/* 是否显示快捷按钮 */}
+        {this.isTab && renderSelectorShortcutBox()}
+        {/* 时间选择框 */}
+        <div class="selector-popup">
+          <van-popup
+            value={this.show}
+            onInput={(value) => { this.show = value }}
+            style="height: 100%"
+            get-container="body"
+            position="right">
+            <div class="popup-date">
+              <header class="ksui-header">
+                <div class="back-icon" onClick={() => { this.show = false }}>
+                  <van-icon size={15} name="arrow-left" />
+                  <span>选择时间段</span>
+                </div>
+              </header>
+              <div class="date-content">
+                <DateRangeSelect defaultValue={this.defaultDate}
+                  v-show={this.show}
+                  key={this.dateKey}
+                  min={this.min}
+                  max={this.maxDate}
+                  ref="dateRangeSelect"
+                  onSelect={this.onSelect} />
               </div>
-            </header>
-            <div class="date-content">
-              <DateRangeSelect defaultValue={this.defaultDate}
-                v-show={this.show}
-                key={this.dateKey}
-                min={this.min}
-                max={this.maxDate}
-                ref="dateRangeSelect"
-                onSelect={this.onSelect} />
-            </div>
-            <div class="time-footer-btn">
-              <van-button type="default" onClick={this.reset} class="btn left-btn">重置</van-button>
-              <van-button type="primary" onClick={this.submit} class="btn">确定</van-button>
-            </div>
-          </div >
-        </van-popup>
+              <div class="time-footer-btn">
+                <van-button type="default" onClick={this.reset} class="btn left-btn">重置</van-button>
+                <van-button type="primary" onClick={this.submit} class="btn">确定</van-button>
+              </div>
+            </div >
+          </van-popup>
+        </div>
       </div >
     }
   }
@@ -245,7 +232,20 @@
     width: 100%;
     text-align: center;
     line-height: 38px;
-    .value-box {
+    .selector-title {
+      line-height: 20px;
+      margin-bottom: 12px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 600;
+      color: #03050d;
+      .title-black {
+        font-size: 14px;
+        font-weight: normal;
+        color: #6e6d72;
+      }
+    }
+    .selector-input {
       background: #f3f4f6;
       border-radius: 8px;
       color: #232323;
@@ -254,7 +254,7 @@
       padding: 0 20px;
       align-items: center;
       line-height: 32px;
-      .value {
+      .input-box {
         font-size: 14px;
         color: #333333;
         display: flex;
@@ -267,7 +267,7 @@
           flex: 1;
         }
       }
-      .icon {
+      .input-icon {
         display: inline-block;
         width: 14px;
         height: 14px;
@@ -275,14 +275,14 @@
         background-size: 100%;
       }
     }
-    .time-btn-box {
+    .selector-shortcut {
       display: flex;
       flex-wrap: wrap;
       // justify-content: space-between;
       justify-content: flex-start;
 
       margin-top: 12px;
-      .time-btn-item {
+      .shortcut-item {
         width: calc((100% - 16px) / 3);
         text-align: center;
         background: #f3f4f6;
@@ -314,12 +314,12 @@
           }
         }
       }
-      .time-btn-item:nth-child(3n) {
+      .shortcut-item:nth-child(3n) {
         margin-right: 0;
       }
     }
   }
-  .time-pop-box {
+  .popup-date {
     .back-icon {
       font-size: 14px;
       color: #03050d;

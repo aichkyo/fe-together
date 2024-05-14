@@ -31,9 +31,9 @@
       const renderSingleChoose = (title) => <SingleChoose title={title} />
       // 多项选择卡片 
       const renderMultitermChoose = (title) => <MultitermChoose title={title} />
-
-      const renderTimeSelector = () => <TimeSelector ref='TimeSelector' />
-
+      // 时间选择器
+      const renderTimeSelector = (title) => <TimeSelector title={title} ref='TimeSelector' />
+      // 主要内容
       const renderFiltrateContent = () => {
         return <div class="filtrate-content">
           <header class="ksui-header">
@@ -47,10 +47,7 @@
           <div class="content-main ksui-body">
             {renderSingleChoose('培训类')}
             {renderMultitermChoose('排序')}
-            {renderTimeSelector()}
-            <div class="main-item">
-              <div class="item-title">排序</div>
-            </div>
+            {renderTimeSelector('排序')}
           </div>
           <div class="content-footer">
             <span class="footer-button reset" onClick={this.operationCondition.bind(this, 0)}>重置</span>
