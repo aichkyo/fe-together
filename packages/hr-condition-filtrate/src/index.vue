@@ -2,12 +2,14 @@
   import SingleChoose from './single-choose/index.vue'
   import MultitermChoose from './multiterm-choose/index.vue'
   import TimeSelector from './time-selector/index.vue'
+  import Textinput from './text-input/index.vue'
 
   export default {
     name: 'HrConditionFiltrate',
     components: {
       SingleChoose,
-      MultitermChoose
+      MultitermChoose,
+      Textinput
     },
     props: {
       value: {
@@ -28,14 +30,16 @@
     },
     render () {
       // 单项选择卡片
-      const renderSingleChoose = (title) => <SingleChoose title={title} />
+      const renderSingleChoose = (title) => <SingleChoose divideeQually={3} title={title} />
       // 多项选择卡片 
       const renderMultitermChoose = (title) => <MultitermChoose title={title} />
       // 时间选择器
       const renderTimeSelector = (title) => <TimeSelector title={title} ref='TimeSelector' />
+      // 文本框
+      const renderTextInput = (title) => <Textinput title={title} />
       // 主要内容
       const renderFiltrateContent = () => {
-        return <div class="filtrate-content">
+        return <div class="filtrate-content" id="hr-filtrate-content">
           <header class="ksui-header">
             <div class="ksui-nav">
               <ks-nav-bar title="筛选"
@@ -48,6 +52,7 @@
             {renderSingleChoose('培训类')}
             {renderMultitermChoose('排序')}
             {renderTimeSelector('排序')}
+            {renderTextInput('录单人')}
           </div>
           <div class="content-footer">
             <span class="footer-button reset" onClick={this.operationCondition.bind(this, 0)}>重置</span>

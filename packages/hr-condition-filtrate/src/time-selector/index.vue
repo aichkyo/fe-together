@@ -1,7 +1,7 @@
 <script>
   import DateRangeSelect from './date-range-select.vue'
   import { hrDayJs } from './utils/tools'
-  import { DATE_SHORTCUT_PARAMS } from '../enum/index.js'
+  import { DATE_SHORTCUT_PARAMS } from '../../enum/index.js'
 
 
   export default {
@@ -110,7 +110,7 @@
         this.selectValue = value
       },
       submit () {
-        console.log('submit')
+        console.log('submit', this.selectValue)
         let value = this.selectValue
         if (value.str && value.str.length && value.str[1]) {
           let res = this.timeDifference(value.str[0] + ' 00:00:00', value.str[1] + ' 00:00:00')
@@ -122,7 +122,6 @@
             this.$emit('input', val)
             this.active = ''
             this.show = false
-            // this.comItem.value = val.map((time) => time.replace(/\//g, '-'))
           } else {
             this.$toast('选择时间不能超过2个月')
           }
@@ -201,9 +200,9 @@
                   ref="dateRangeSelect"
                   onSelect={this.onSelect} />
               </div>
-              <div class="time-footer-btn">
-                <van-button type="default" onClick={this.reset} class="btn left-btn">重置</van-button>
-                <van-button type="primary" onClick={this.submit} class="btn">确定</van-button>
+              <div class="date-footer">
+                <van-button type="default" onClick={this.reset} class="footer-btn left-btn">重置</van-button>
+                <van-button type="primary" onClick={this.submit} class="footer-btn">确定</van-button>
               </div>
             </div >
           </van-popup>
@@ -340,7 +339,7 @@
       bottom: 1px !important;
     }
   }
-  .time-footer-btn {
+  .date-footer {
     width: 100%;
     padding: 14px 20px;
     // height: 64px;
@@ -350,16 +349,18 @@
     align-items: center;
     overflow: hidden;
     box-sizing: border-box;
-    .btn {
+    .footer-btn {
       height: 36px;
       width: 44%;
-      border-radius: 25px;
+      border-radius: 8px;
+      height: 40px;
     }
     .left-btn {
       color: #8b83fc;
-      // border-color: #8b83fc;
       position: relative;
       border: none;
+      font-size: 16px;
+      height: 40px;
       &::after {
         content: " ";
         position: absolute;

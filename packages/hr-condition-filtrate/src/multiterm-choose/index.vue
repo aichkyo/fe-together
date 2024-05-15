@@ -132,7 +132,7 @@
         box-sizing: border-box;
         background: #f7f8fa;
         text-align: center;
-        line-height: 26px;
+        line-height: 28px;
         margin-bottom: 12px;
         margin-right: 8px;
         color: #03050d;

@@ -36,6 +36,12 @@
         default () {
           return false
         }
+      },
+      divideeQually: {
+        type: Number,
+        default () {
+          return 3
+        }
       }
     },
     data () {
@@ -65,6 +71,7 @@
           {
             list.map((item, index) => <div
               onClick={this.select.bind(this, index)}
+              style={{ width: `calc((100% - 16px) / ${this.divideeQually})` }}
               class={['condition-item', this.active === index && 'active']}>
               {item.label}
             </div>)
@@ -95,13 +102,13 @@
       flex-wrap: wrap;
       justify-content: flex-start;
       .condition-item {
-        width: calc((100% - 16px) / 3);
+        // width: calc((100% - 16px) / 3);
         height: 28px;
         border-radius: 8px;
         box-sizing: border-box;
         background: #f7f8fa;
         text-align: center;
-        line-height: 26px;
+        line-height: 28px;
         margin-bottom: 12px;
         margin-right: 8px;
         color: #03050d;
@@ -121,6 +128,7 @@
           height: 200%;
           border: 1px solid #7972fe;
           border-radius: 16px;
+          box-sizing: border-box;
           -webkit-transform-origin: 0 0;
           transform-origin: 0 0;
           -webkit-transform: scale(0.5);
