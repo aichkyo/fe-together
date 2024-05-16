@@ -1,52 +1,54 @@
 <script>
   export default {
-    name: 'EmployeeChoose',
+    name: 'OrgTreeChoose',
     props: {
       title: {
         type: String,
         default () {
           return '请选择'
         }
-      },
-      multiple: {
-        type: Boolean,
-        default () {
-          return true
-        }
       }
     },
     data () {
       return {
-        isShowKsEmployeePopup: false,
-        employeeList: []
+        defaultCheckedKey: '171',
+        isShowOrgTreePop: false,
+        organization: {}
       }
     },
     methods: {
-      confirmEmployee (list) {
-        this.employeeList = list
-        this.isShowKsEmployeePopup = false
+      handleChange (organization) {
+        this.isShowOrgTreePop = false
+        this.organization = organization || {}
+        console.log(organization, 'organization')
       }
     },
     render () {
-      const { employeeName } = this.employeeList[0] || {}
-      return <div class="employee-choose">
+      const { name } = this.organization
+      return <div class="org-tree-choose">
         <div class="choose-title">{this.title}</div>
         <div class="choose-input" onClick={() => {
-          this.isShowKsEmployeePopup = true
+          this.isShowOrgTreePop = true
         }}>
-          <span class={["input-text", employeeName && 'black']}>{employeeName || '请选择'}</span>
+          <span class={["input-text", name && 'black']}>{name || '请选择'}</span>
           <img class="input-image" src={require('../../image/arrow-right.png')} />
         </div>
         <div class="choose-popup">
-          <ks-employee-popup
+          <ks-org-tree-pop
             style={{ height: '100%', width: '330px' }}
-            placeholder="输入员工姓名/工号"
-            value={this.isShowKsEmployeePopup}
-            onInput={(value) => { this.isShowKsEmployeePopup = value }}
-            multiple={this.multiple}
-            menuId='151596034994370809'
-            popAttr={{ position: 'right' }}
-            onConfirm={this.confirmEmployee}></ks-employee-popup>
+            value={this.isShowOrgTreePop}
+            overlay={true}
+            closeOnClickOverlay={true}
+            onClose={() => {
+              this.isShowOrgTreePop = false
+            }}
+            onInput={(value) => {
+              this.isShowOrgTreePop = value
+            }}
+            ref="popTree"
+            defaultCheckedKeys={this.defaultCheckedKey}
+            onHandleChange={this.handleChange}
+          />
         </div>
       </div>
     }
@@ -54,7 +56,7 @@
 </script>
 
 <style scoped lang="less">
-  .employee-choose {
+  .org-tree-choose {
     .choose-title {
       line-height: 20px;
       margin-bottom: 12px;
@@ -93,9 +95,8 @@
   }
   .van-popup {
     height: 100%;
-    .popup-employee {
-      width: 330px;
-      height: 100%;
-    }
   }
-</style>
+  /deep/.ks-org-tree-header-title-label {
+    font-size: 16px;
+  }
+</style> 

@@ -45,10 +45,11 @@
       }
     }
     .input-box {
+      margin-bottom: 12px;
       .van-cell {
-        height: 28px;
+        height: 32px;
         padding: 0 12px;
-        line-height: 28px;
+        line-height: 32px;
         border-radius: 8px;
         background-color: #f7f8fa !important;
         font-size: 12px;

@@ -3,13 +3,17 @@
   import MultitermChoose from './multiterm-choose/index.vue'
   import TimeSelector from './time-selector/index.vue'
   import Textinput from './text-input/index.vue'
+  import EmployeeChoose from './employee-choose/index.vue'
+  import OrgTreeChoose from './org-tree-choose/index.vue'
 
   export default {
     name: 'HrConditionFiltrate',
     components: {
       SingleChoose,
       MultitermChoose,
-      Textinput
+      Textinput,
+      EmployeeChoose,
+      OrgTreeChoose
     },
     props: {
       value: {
@@ -37,6 +41,10 @@
       const renderTimeSelector = (title) => <TimeSelector title={title} ref='TimeSelector' />
       // 文本框
       const renderTextInput = (title) => <Textinput title={title} />
+      // 渲染选择人员框
+      const renderEmployeeChoose = (title) => <EmployeeChoose title={title} />
+      // 渲染选择组织树
+      const renderOrgTreeChoose = (title) => <OrgTreeChoose title={title} />
       // 主要内容
       const renderFiltrateContent = () => {
         return <div class="filtrate-content" id="hr-filtrate-content">
@@ -53,6 +61,8 @@
             {renderMultitermChoose('排序')}
             {renderTimeSelector('排序')}
             {renderTextInput('录单人')}
+            {renderEmployeeChoose('扣款人')}
+            {renderOrgTreeChoose('选择组织')}
           </div>
           <div class="content-footer">
             <span class="footer-button reset" onClick={this.operationCondition.bind(this, 0)}>重置</span>
@@ -227,6 +237,7 @@
   }
   .van-popup {
     height: 100%;
+    overflow: hidden;
   }
   .ios .content-footer,
   .ipx .content-footer {
