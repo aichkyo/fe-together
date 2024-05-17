@@ -1,5 +1,8 @@
 # 复制
 
+> 仅示例
+
+
 /**
  * @description: 复制功能
  * @param {String} 需要复制的文本
