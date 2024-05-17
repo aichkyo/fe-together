@@ -17,6 +17,7 @@ PACKAGE_NAME_VERSION=$PACKAGE_NAME@$PACKAGE_VERSION
 echo "开始构建包，包名：$PACKAGE_NAME，版本号：$PACKAGE_VERSION"
 
 # 构建库
+# --dest 指定输出目录 (默认值：dist)
 yarn vue-cli-service build --target lib --name "$PACKAGE_NAME_VERSION"  ./packages/index.js
 
 

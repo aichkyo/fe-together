@@ -18,23 +18,23 @@ module.exports = {
       { text: '指南', link: '/guide/', activeMatch: '/guide/' },
       { text: '轻应用', link: '/H5-components/', activeMatch: '/H5-components/' },
       { text: '铸剑', link: '/ERP-components/', activeMatch: '/ERP-components/' },
-      { text: '工具方法', link: '/utils/' },
-      // { text: '官方示例', link: '/markdown-examples.md' },
+      { text: '工具方法', link: '/utils/', activeMatch: '/utils/' },
     ],
 
     // sidebar: 'auto',
     sidebar: {
       '/guide/': [
         {
-          title: '指南',
+          title: '关于',
           collapsable: false,
-          sidebarDepth: 1,
+          sidebarDepth: 2,
+          children: getSideBar('guide', 'about'),
         }
       ],
       '/H5-components/': [
         {
           title: '业务组件',
-          collapsable: false,
+          collapsable: true,
           sidebarDepth: 1,
           children: getSideBar('H5-components', 'custom'),
         },
@@ -50,7 +50,16 @@ module.exports = {
       ],
       '/utils/': [
         {
-
+          title: 'ERP工具方法',
+          collapsable: true,
+          sidebarDepth: 1,
+          children: getSideBar('utils', 'ERP'),
+        },
+        {
+          title: '轻应用工具方法',
+          collapsable: true,
+          sidebarDepth: 1,
+          children: getSideBar('utils', 'H5'),
         }
       ]
     },
@@ -73,6 +82,7 @@ function getSideBar (catalog, folder) {
   let sidebar = [
     // ['', '介绍'],
   ]
+  console.log('file_list :>> ', file_list);
   for (let i = 0; i < file_list.length; i++) {
     // 可根据需求定制文件名，但是不能有.md后缀
     const fileName = file_list[i];
