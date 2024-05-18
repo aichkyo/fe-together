@@ -22,6 +22,8 @@
       <HrBottomButton :list="list"
                       @clickButton='clickButton' />
       <HrConditionFiltrate v-model="isShowFiltrate" />
+      <HrSearchInput />
+      <HrTabnav />
     </div>
 
   </div>
@@ -34,6 +36,8 @@
   import HrEmotionalPicture from 'packages/hr-emotional-picture'
   import HrBottomButton from 'packages/hr-bottom-button'
   import HrConditionFiltrate from 'packages/hr-condition-filtrate'
+  import HrSearchInput from 'packages/hr-search-input'
+  import HrTabnav from 'packages/hr-tab-nav'
 
   export default {
     name: 'HelloWorld',
@@ -42,7 +46,9 @@
       hrNoticeBar,
       HrEmotionalPicture,
       HrBottomButton,
-      HrConditionFiltrate
+      HrConditionFiltrate,
+      HrSearchInput,
+      HrTabnav
     },
     props: {
       msg: String
