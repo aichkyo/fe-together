@@ -21,7 +21,8 @@
                      text="已为你精选出重要留言请及时查看!"
                      left-icon="volume" />
       <div :style="{height: '350px'}">
-        <HrEmotionalPicture />
+        <HrEmotionalPicture type="evaluate"
+                            text="稍后再来" />
       </div>
       <HrBottomButton :list="list"
                       @clickButton='clickButton' />
@@ -55,7 +56,7 @@
       HrConditionFiltrate,
       HrSearchInput,
       HrTabnav,
-      hrButton,
+      // hrButton,
       hrStackImage
     },
     props: {

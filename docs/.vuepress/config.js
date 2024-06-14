@@ -10,7 +10,7 @@ module.exports = {
   base: '/',
 
   // 文档配置
-  title: "HR FE Together Build",
+  title: "HR-OA-KTS 轻应用组件库",
   description: "HR-OA-KTS部门前端共建文档库",
   themeConfig: {
     // https://vuepress.vuejs.org/zh/theme/default-theme-config.html
