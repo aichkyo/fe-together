@@ -25,5 +25,18 @@ module.exports = {
   },
   css: {
     extract: false, // 组件中的 CSS 动态注入到 JavaScript 中的 inline 代码
+  },
+  devServer: {
+    host: '0.0.0.0',
+    proxy: {
+      '/router': {
+        // target: 'http://api-uat.kyeapi.com',
+        // target: 'http://open-dev.kyepm.com',
+        // target: 'https://kuasheng-h5.kye-erp.com',
+        // target: 'http://api-stg.kyeapi.com',
+        target: 'http://api-uat.kyeapi.com',
+        changeOrigin: true
+      }
+    }
   }
 }
